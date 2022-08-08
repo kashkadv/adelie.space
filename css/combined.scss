@@ -6,9 +6,22 @@ $padding: 24px;
 $margin: 24px 0;
 $box_shadow_s: 8px 8px 8px $shadow_color;
 
+*::selection {
+    background-color:transparent;
+} 
+
+*::-moz-selection {
+    background-color:transparent;
+}
+
 * {
     font-family: 'Raleway', sans-serif;
     color: $mostly_black;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 ::-moz-selection {

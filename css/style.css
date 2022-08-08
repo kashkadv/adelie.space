@@ -2,9 +2,20 @@
 a {
   color: #191970; }
 
+*::selection {
+  background-color: transparent; }
+
+*::-moz-selection {
+  background-color: transparent; }
+
 * {
   font-family: 'Raleway', sans-serif;
-  color: #262626; }
+  color: #262626;
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 ::-moz-selection {
   color: #f6f6f6;
