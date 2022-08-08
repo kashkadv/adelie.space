@@ -125,7 +125,7 @@ section {
         border-radius: 12px;
         position: relative;
         div {
-            padding: 24px;
+            padding: 24px 52px 24px 24px;
             cursor: default;
             &:not(:last-of-type) {
                 padding-bottom: 12px;
@@ -173,7 +173,7 @@ section {
         width: 100%;
     }
     .book {
-        width: 50%;
+        width: 100%;
         .book__inner {
             img {
                 transform: scale(.7);
