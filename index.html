@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html charset="utf-8">
     <head>
-        <link rel="stylesheet" href="style.css">
+        <title>Library</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <h1>Hello world! I`m from git ... .</h1>
-        <h1>Second title ... .</h1>
-        <h1>Hello world! I`m from git ...</h1>
-        <h2>lesson_1 branch title</h2>
-
-        <h3>lesson_1 branch title</h3>
+        <section id="form">
+            <form class="form" action="">
+                <div class="form__group">
+                    <input class="form__input" type="text" placeholder="Book title" name="title">
+                    <span class="form__message">Title can`t be empty</span>
+                </div>
+                <div class="form__group">
+                    <input class="form__input" type="text" placeholder="Book author" name="author">
+                    <span class="form__message">Author can`t be empty</span>
+                </div>
+                <div class="form__group">
+                    <input class="form__input" type="number" step="1" placeholder="Book pages" name="pages">
+                    <span class="form__message">Pages can`t be empty</span>
+                </div>
+                <button class="form__button" type="submit">Add to library</button>
+            </form>
+        </section>
+        <section id="shelter"></section>
+        <script src="script.js"></script>
     </body>
-</html>
+</html> 

@@ -1,0 +1,166 @@
+@import 'colors.scss';
+@import 'links.scss';
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;600&display=swap');
+
+$padding: 24px;
+$margin: 24px 0;
+$box_shadow_s: 8px 8px 8px $shadow_color;
+
+* {
+    font-family: 'Raleway', sans-serif;
+    color: $mostly_black;
+}
+
+::-moz-selection {
+    color: $very_light_grey;
+    background: $mostly_black;
+  }
+  
+::selection {
+    color: $very_light_grey;
+    background: $mostly_black;
+}
+
+@mixin flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+html, body {
+    background-color: $very_light_grey;
+    margin: 0;
+}
+
+body {
+    padding: $padding;
+}
+
+section {
+    @include flex;
+    justify-content: center;
+    margin: $margin;
+    &#shelter {
+        justify-content: flex-start;
+    }
+    &:not(:last-child) {
+        margin-bottom: 48px;
+    }
+}
+
+.form {
+    padding: $padding;
+    background-color: $light_grey;
+    width: calc(100% / 3);
+    border-radius: 12px;
+    box-shadow: $box_shadow_s;
+    .form__group {
+        margin-bottom: 24px;
+        width: 100%;
+        position: relative;
+        .form__input {
+            width: 100%;
+            display: block;
+            background-color: $light_grey;
+            box-sizing: border-box;
+            padding: 8px;
+            border: none;
+            border-bottom: 1px solid $dark_grey;
+            transition: .2s ease-in-out;
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 32px;
+            color: $mostly_black;
+            &:active, &:focus {
+                border-bottom-color: $very_dark_grey;
+                outline: none;
+                caret-color: $mostly_black;
+            }
+            &::placeholder {
+                color: $very_dark_grey;
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+            &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            &[type=number] {
+                -moz-appearance: textfield;
+            }
+        }
+        .form__message {
+            position: absolute;
+            margin-top: 4px;
+            right: 0;
+            font-weight: 400;
+            color: $mostly_black;
+            opacity: 0;
+            transition: opacity .3s ease;
+            &.form__message_error {
+                color: $red;
+                opacity: 1;
+                transition: opacity .3s ease;
+            }
+        }
+    }
+    .form__button {
+        font-size: 14px;
+        letter-spacing: 1px;
+        font-weight: 300;
+        padding: 16px 24px;
+        cursor: pointer;
+        border: none;
+        background-color: $mostly_black;
+        color: #fff;
+        font-weight: 400;
+    }
+}
+
+.book {
+    width: calc((100%) / 4);
+    .book__inner {
+        margin: 12px;
+        background: $light_grey;
+        box-shadow: $box_shadow_s;
+        border-radius: 12px;
+        position: relative;
+        div {
+            padding: 24px;
+            cursor: default;
+            &:not(:last-of-type) {
+                padding-bottom: 12px;
+            }
+            &:not(:first-of-type) {
+                padding-top: 12px;
+            }
+        }
+        .book__delete {
+            opacity: 0;
+            transition: all .3s ease-in-out;
+            position: absolute;
+            right: 6px;
+            bottom: 6px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .book__status {
+            width: 30px;
+            position: absolute;
+            right: 12px;
+            top: 6px;
+            cursor: pointer;
+            transform: rotateY(-180deg);
+            opacity: .5;
+            transition: opacity .3s ease-in-out;
+            &.book__status_read {
+                transform: unset;
+                opacity: 1;
+                fill: green;
+            }
+        }
+    }
+    &:hover .book__delete{
+        opacity: 1;
+    }
+}
