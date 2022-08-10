@@ -41,9 +41,9 @@
                 obj.style.opacity = 1
                 ghost_obj.remove()
             }
-            function move(e) {
-                e.preventDefault()
-                if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
+            function move(e) {     
+                e.preventDefault()           
+                if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){                    
                     var evt = (typeof e.originalEvent === 'undefined') ? e : e.originalEvent;
                     var touch = evt.touches[0] || evt.changedTouches[0];
                     coordinates = [touch.clientX, touch.clientY]
@@ -70,7 +70,7 @@
                 obj.style.opacity = 0
                 document.body.appendChild(ghost_obj)
                 document.addEventListener('mousemove', move)
-                document.addEventListener('touchmove', move)
+                document.addEventListener('touchmove', move, {passive: false})
                 document.onmouseup = function() {
                     stop_move()
                 }
