@@ -28,14 +28,11 @@
         <div draggable="true" class="cube" id="rect_2"></div>
         <div draggable="true" class="cube" id="rect_3"></div>
         <script>
-
             const draggable_arr = document.querySelectorAll('[draggable=true]')
-
             let coordinates
             let mouse_offset
             let obj
             let ghost_obj
-
             function stop_move() {
                 document.removeEventListener('mousemove', move)
                 document.removeEventListener('touchmove', move)
@@ -44,40 +41,34 @@
                 obj.style.opacity = 1
                 ghost_obj.remove()
             }
-
             function move(e) {
+                e.preventDefault()
                 if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
                     var evt = (typeof e.originalEvent === 'undefined') ? e : e.originalEvent;
                     var touch = evt.touches[0] || evt.changedTouches[0];
                     coordinates = [touch.clientX, touch.clientY]
                 } else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {
                     coordinates = [e.clientX, e.clientY]
-                }
-
-                
+                }                
                 ghost_obj.style.top = (coordinates[1] - mouse_offset[1]) + 'px'
                 ghost_obj.style.left = (coordinates[0] - mouse_offset[0]) + 'px'
             }
-
             function drag_start(e){
+                e.preventDefault()
                 obj = e.target
                 ghost_obj = obj.cloneNode(true)
                 ghost_obj.classList.add('drag_ghost')
-
                 let x = e.pageX
                 let y = e.pageY
-
                 if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
                     var evt = (typeof e.originalEvent === 'undefined') ? e : e.originalEvent;
                     var touch = evt.touches[0] || evt.changedTouches[0];
                     x = touch.clientX
                     y = touch.clientY
-                }
-                
+                }                
                 mouse_offset = [x - obj.getBoundingClientRect().left, y - obj.getBoundingClientRect().top]
                 obj.style.opacity = 0
                 document.body.appendChild(ghost_obj)
-
                 document.addEventListener('mousemove', move)
                 document.addEventListener('touchmove', move)
                 document.onmouseup = function() {
@@ -87,10 +78,8 @@
                     stop_move()
                 }
             }
-
             Array.from(draggable_arr).forEach(element => element.addEventListener('touchstart', drag_start))
             Array.from(draggable_arr).forEach(element => element.addEventListener('dragstart', drag_start))
-
         </script>
     </body>
 </html>
