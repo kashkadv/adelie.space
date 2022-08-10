@@ -21,13 +21,13 @@ form.addEventListener('submit', function(event) {
     }
     if(!errors) {
         const book = Book()
-        book.add_book(data)
+        book.add(data)
         event.target.reset()
     }
 })
 
 const Book = () => {
-    const add_book = (data) => {
+    const add = (data) => {
         var book = {
             title: data.get('title'),
             author: data.get('author'),
@@ -37,9 +37,9 @@ const Book = () => {
         }        
         Library.push(book)
         storage.setItem('Library', JSON.stringify(Library))
-        render_book(book)
+        render(book)
     }
-    const render_book = (data) => {
+    const render = (data) => {
         const shelter = document.getElementById("shelter")
         const book = document.createElement("div")
         book.className = 'book'
@@ -60,13 +60,13 @@ const Book = () => {
         book__status.title = 'Book status'
         book__status.src = 'toggle.svg'
         book__status.setAttribute('data-id', data.id)
-        book__status.addEventListener('click', function(event) { change_book_status(event, data.id) })
+        book__status.addEventListener('click', function(event) { change_status(event, data.id) })
         const book__delete = document.createElement('img')
         book__delete.className = 'book__delete'
         book__delete.title = 'Remove from library'
         book__delete.src = 'trash.svg'
         book__delete.setAttribute('data-id', data.id)        
-        book__delete.addEventListener('click', function() { delete_book(data.id) })
+        book__delete.addEventListener('click', function() { remove(data.id) })
         shelter.appendChild(book)
         book.appendChild(book__inner)
         book__inner.appendChild(book__title)
@@ -75,7 +75,7 @@ const Book = () => {
         book__inner.appendChild(book__delete)
     }
 
-    const change_book_status = (event, id) => {
+    const change_status = (event, id) => {
         event.target.classList.toggle('book__status_read')
         Library = Library.filter(function(data) {
             if(data.id == id) {
@@ -86,7 +86,7 @@ const Book = () => {
         storage.setItem('Library', JSON.stringify(Library))
     }
 
-    const delete_book = (id) => {
+    const remove = (id) => {
         var book = document.getElementById(id)
         Library = Library.filter(function(data, index) {
             return data.id !== id
@@ -95,12 +95,12 @@ const Book = () => {
         book.remove()
     }
 
-    return { add_book, render_book }
+    return { add, render }
 }
 
 if(Library.length > 0) {
     Library.forEach(function(data) {
         let book = Book()
-        book.render_book(data)
+        book.render(data)
     })
 }

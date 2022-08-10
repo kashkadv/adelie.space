@@ -153,6 +153,7 @@ section {
             position: absolute;
             right: 6px;
             bottom: 18px;
+            transform: scale(.7);
             &:hover {
                 cursor: pointer;
             }
@@ -188,9 +189,6 @@ section {
     .book {
         width: 100%;
         .book__inner {
-            img {
-                transform: scale(.7);
-            }
             .book__delete {
                 opacity: 1;
             }

@@ -121,7 +121,8 @@ section {
       transition: all .3s ease-in-out;
       position: absolute;
       right: 6px;
-      bottom: 18px; }
+      bottom: 18px;
+      transform: scale(0.7); }
       .book .book__inner .book__delete:hover {
         cursor: pointer; }
     .book .book__inner .book__status {
@@ -149,8 +150,6 @@ section {
 
   .book {
     width: 100%; }
-    .book .book__inner img {
-      transform: scale(0.7); }
     .book .book__inner .book__delete {
       opacity: 1; } }
 
