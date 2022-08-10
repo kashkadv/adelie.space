@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <style>
+            body { 
+                background-color: #f6f6f6
+            }
+            .cube {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                cursor: grab;
+            }
+            #rect_1 {                
+                background-color: #2B4865;
+            }
+            #rect_2 {
+                top: 116px;
+                background-color: #256D85;
+            }
+            #rect_3 {
+                top: 224px;
+                background-color: #8FE3CF;
+            }
+        </style>
+        <div draggable="true" class="cube" id="rect_1"></div>
+        <div draggable="true" class="cube" id="rect_2"></div>
+        <div draggable="true" class="cube" id="rect_3"></div>
+        <script>
+
+            const draggable_arr = document.querySelectorAll('[draggable=true]')
+
+            let coordinates
+            let mouse_offset
+            let obj
+            let ghost_obj
+
+            function stop_move() {
+                document.removeEventListener('mousemove', move)
+                obj.style.top = (coordinates[1] - mouse_offset[1]) + 'px'
+                obj.style.left = (coordinates[0] - mouse_offset[0]) + 'px'
+                obj.style.opacity = 1
+                ghost_obj.remove()
+            }
+
+            function move(e) {
+                coordinates = [e.pageX, e.pageY]
+                ghost_obj.style.top = (coordinates[1] - mouse_offset[1]) + 'px'
+                ghost_obj.style.left = (coordinates[0] - mouse_offset[0]) + 'px'
+            }
+
+            function drag_start(e){
+                obj = e.target
+                ghost_obj = obj.cloneNode(true)
+                ghost_obj.classList.add('drag_ghost')
+                mouse_offset = [e.pageX - obj.getBoundingClientRect().left, e.pageY - obj.getBoundingClientRect().top] // x, y  event.pageX
+                obj.style.opacity = 0
+                document.body.appendChild(ghost_obj)
+
+                document.addEventListener('mousemove', move)                
+                document.onmouseup = function() {
+                    stop_move()
+                }
+            }
+
+            Array.from(draggable_arr).forEach(element => element.addEventListener('dragstart', drag_start))
+
+        </script>
+    </body>
+</html>
